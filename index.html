@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tip calculator app</title>
+    <link rel="stylesheet" href="style.css">
+    <script defer src="script.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <img src="images/logo.svg" alt="">
+    <main class="container">
+        <form class="form" novalidate id="form">
+            <section class="form-section">
+                <div class="label-error">
+                    <label for="bill">Bill</label>
+                    <span class="error-label">Can't be zero</span>
+                </div>
+                <input type="number" name="bill" placeholder="0" class="text-input bill">
+            </section>
+            <section class="form-section">
+                <div class="label-error">
+                    <label>Select Tip %</label>
+                    <span class="error-label">Can't be negative</span>
+                </div>
+            <div class="percentages-selection">
+                <button>5%</button>
+                <button>10%</button>
+                <button>15%</button>
+                <button>25%</button>
+                <button>50%</button>
+                <input type="number" placeholder="Custom" class="custom" name="percentage">
+            </div>
+            </section>
+            <section class="form-section">
+                <div class="label-error">
+                    <label for="people">Number Of People</label>
+                    <span class="error-label">Can't be zero</span>
+                </div>
+            <input type="number" name="people" placeholder="0" class="text-input people">
+            </section>
+        </form>
+        <section class="prices">
+            <div class="price-container">
+                <div>
+                    <h4>Tip Amount</h4>
+                    <p>/ person</p>
+                </div>
+                <h1 class="price" id="tip-amount">$0.00</h1>
+            </div>
+            <div class="price-container">
+                <div>
+                    <h4>Total</h4>
+                    <p>/ person</p>
+                </div>
+                <h1 class="price" id="total">$0.00</h1>
+            </div>
+            <button class="reset-button">RESET</button>
+        </section>
+    </main>
+</body>
+</html>
