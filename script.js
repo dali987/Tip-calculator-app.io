@@ -31,6 +31,7 @@ const keyToElement = {
   percentage: customPercentInput,
   people: peopleInput,
 }
+// i just realised that i abused this list thingy hehe
 
 // btw this is copied, im too lazy to rewrite it, atleast i understand how it works!!
 const dataIsValid = (key, value, validations) => {
@@ -38,18 +39,23 @@ const dataIsValid = (key, value, validations) => {
 
   return validations[key](value);
 }
+// you give it the name of the field and it will add the error to it
 const renderError = name => {
   const parent = keyToElement[name].closest(".form-section");
-  parent.classList.add("error");
+  if (parent){
+    parent.classList.add("error");
+  }
 }
 
+// same but this removes the error
 const removeError = name =>{
   const parent = keyToElement[name].closest(".form-section");
-  if (parent){}
-  parent.classList.remove("error");
+  if (parent){
+   parent.classList.remove("error"); 
+  }
 }
 
-const formIsValid = (form, validations) => {
+const formIsValid = (form, validations) => { // i made it so when its checking if the form is valid or not, it will give errors in the way since were are checking the validity so yeah
   const data = Object.fromEntries(new FormData(form));
   isEmpty = true
   isValid = true
@@ -68,25 +74,20 @@ const formIsValid = (form, validations) => {
   });
 }
 
-const checkEmpty = () =>{
-  const data = Object.fromEntries(new FormData(form));
-  object
-}
-
 const resetLabels = () =>{
   totalLabel.textContent = "$0.00";
   tipAmountLabel.textContent = "$0.00";
 }
 
+// updates the text (just adding the "$" to it)
 const updateText = (element, text) =>{
   element.textContent = `$${text}`;
 }
 
+// this line got used alot so yeah (dont ask me why i didnt do the unactive version)
 const activateElement = (element) =>{
   element.classList.add("active");
 }
-
-// adds the "error" class to the container of the element that got the error
 
 const removeActiveButtons = () =>{ // this line got used 3 time so it deserved a function
   percentButtonsArray.forEach(button => button.classList.remove('active'));
@@ -123,7 +124,7 @@ const reset = () =>{
     });
   resetLabels();
   resetButton.classList.remove("active");
-  Object.keys(keyToElement).forEach(key =>{
+  Object.keys(keyToElement).forEach(key =>{ // loops through all the fields
     removeError(key);
   })
   percentage = 0;
@@ -140,10 +141,10 @@ document.addEventListener("input", event =>{
   if (isValid){
     update();
   }
-  if (isEmpty && !buttonsContainer.querySelector(".active")){
+  if (isEmpty && !buttonsContainer.querySelector(".active")){ // if there is no button clicked and the fields are empty, the reest button will be off
     resetButton.classList.remove("active")
   }
-  else{
+  else{ // if not enable it
     activateElement(resetButton);
   }
 });
@@ -171,4 +172,5 @@ resetButton.addEventListener("click", () =>{
   if (resetButton.classList.contains("active")){
     reset();
   }
+
 });
